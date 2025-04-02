@@ -9,12 +9,22 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
 
-public class EnglishDictionary {
-    private static HashSet<String> dictionary = new HashSet<>();
-    private static ArrayList<String> grams = new ArrayList<>();
+public class EnglishWordDictionaryGrams {
+    private HashSet<String> dictionary;
+    private HashSet<String> used;
+    private ArrayList<String> grams;
+    private String currentGram;
+
+
+    public EnglishWordDictionaryGrams(){
+        dictionary = new HashSet<>();
+        used = new HashSet<>();
+        grams = new ArrayList<>();
+        currentGram = "";
+    }
 
     // Load dictionary from the resources folder
-    public static void loadDictionary(String filename) {
+    public void loadDictionary(String filename) {
         try {
             // Get the file from the classpath (resources folder)
             Resource resource = new ClassPathResource(filename);
@@ -35,7 +45,7 @@ public class EnglishDictionary {
     }
 
     // Load grams from the grams.txt file into an ArrayList
-    public static void loadGrams(String filename) {
+    public void loadGrams(String filename) {
         try {
             // Get the file from the classpath (resources folder)
             Resource resource = new ClassPathResource(filename);
@@ -55,23 +65,51 @@ public class EnglishDictionary {
         }
     }
 
-    public static boolean isEnglishWord(String word) {
-        return dictionary.contains(word.toLowerCase());
+    public void generateNewGram(){
+        int randIndex = (int) (Math.random() * grams.size());
+        currentGram = grams.get(randIndex);
     }
 
-    public static void main(String[] args) {
-        // Load words from the file in the resources folder
+    public boolean isValid(String word){
+        word = word.toLowerCase();
+        if(dictionary.contains(word) && word.contains(currentGram) && !used.contains(word)){
+            return true;
+        }
+        return false;
+    }
+
+    public void addToUsed(String word){
+        used.add(word);
+    }
+
+    public String getCurrentGram(){
+        return currentGram;
+    }
+
+    public void initializeStuff(){
         loadDictionary("textfiles/words_alpha.txt");
-
-        // Load grams from the grams.txt file in the resources folder
         loadGrams("textfiles/grams.txt");
-
-        // Test the dictionary
-        System.out.println(isEnglishWord("hello"));  // true
-        System.out.println(isEnglishWord("hjdskf")); // false
-        System.out.println(isEnglishWord("apple"));  // true
-
-        // Test grams list
-        System.out.println("Grams: " + grams); // Print loaded grams
     }
+
+    public void resetStuff(){
+        used = new HashSet<>();
+
+        generateNewGram();
+    }
+
+//    public static void main(String[] args) {
+//        // Load words from the file in the resources folder
+//        loadDictionary("textfiles/words_alpha.txt");
+//
+//        // Load grams from the grams.txt file in the resources folder
+//        loadGrams("textfiles/grams.txt");
+//
+//        // Test the dictionary
+//        System.out.println(isEnglishWord("hello"));  // true
+//        System.out.println(isEnglishWord("hjdskf")); // false
+//        System.out.println(isEnglishWord("apple"));  // true
+//
+//        // Test grams list
+//        System.out.println("Grams: " + grams); // Print loaded grams
+//    }
 }
