@@ -11,7 +11,10 @@ import java.io.IOException;
 import java.util.Scanner;
 
 @RestController
-@CrossOrigin(origins = "http://127.0.0.1:8081")  // Adjust the URL to your frontend's URL if necessary
+@CrossOrigin(origins = {
+        "https://typing-substring-match-game.onrender.com",
+        "http://127.0.0.1:8081"
+})
 public class TypingGameController {
 
     EnglishWordDictionaryGrams ewdg;

@@ -1,4 +1,5 @@
-const apiBaseUrl = "http://localhost:8080";
+//const apiBaseUrl = "http://localhost:8080";
+const apiBaseUrl = "https://typing-game-backend-x9on.onrender.com";
 
 let startTime;
 let duration;
