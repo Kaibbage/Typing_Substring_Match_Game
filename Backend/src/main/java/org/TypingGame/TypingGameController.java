@@ -1,6 +1,14 @@
 package org.TypingGame;
 
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
 
 @RestController
 @CrossOrigin(origins = "http://127.0.0.1:8081")  // Adjust the URL to your frontend's URL if necessary
@@ -25,6 +33,59 @@ public class TypingGameController {
         }
     }
 
+
+    @GetMapping("/")
+    public String home() {
+        return "Sudoku Solver Backend is running!";
+    }
+
+    @GetMapping("/is-ready")
+    public String getReady() {
+        return "ready";
+    }
+
+    @GetMapping("/get-high-score")
+    public String getHighScore() {
+        try {
+            Resource resource = new ClassPathResource("SavedInfo/HighScore.txt");
+            File file = resource.getFile();
+
+            try (Scanner scanner = new Scanner(file)) {
+                if (scanner.hasNextLine()) {
+                    String res = scanner.nextLine().trim();
+                    System.out.println(res);
+                    return res;
+                } else {
+                    return "0";
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading high score file: " + e.getMessage());
+            return "0";
+        }
+    }
+
+    @PostMapping("/update-high-score")
+    public String updateHighScore(@RequestBody InputRequest request) {
+        String highScoreString = request.getInput();
+        int highScore = Integer.parseInt(highScoreString);
+
+        try {
+            Resource resource = new ClassPathResource("SavedInfo/HighScore.txt");
+            File file = resource.getFile();
+
+            try (FileWriter writer = new FileWriter(file, false)) { //false = overwrite
+                writer.write(String.valueOf(highScore));
+            }
+
+        } catch (FileNotFoundException e) {
+            System.err.println("Error: High score file not found!");
+        } catch (IOException e) {
+            System.err.println("Error writing the high score file: " + e.getMessage());
+        }
+
+        return "updated";
+    }
 
 
     // Endpoint to check word

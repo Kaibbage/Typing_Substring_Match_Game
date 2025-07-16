@@ -8,20 +8,36 @@
 </head>
 <body>
     <!-- Score display -->
-    <div class="score-display">
+    <div class="score-display" id="score-display">
         Score: <span id="score">0</span>
         <div class="high-score">High Score: <span id="high-score">0</span></div>
     </div>
 
     <!-- White squares container (X marks will be added after timer ends) -->
-    <div class="white-squares">
+    <div class="white-squares" id="white-squares">
         <div class="white-square" id="ws1"></div>
         <div class="white-square" id="ws2"></div>
         <div class="white-square" id="ws3"></div>
     </div>
 
+    <div id="left=panel" class="left-panel extra">
+        <div id="status-container" class="status-container extra">
+            <div id="status-label" class="status-label"></div>
+            <div id="status-circle" class="status-indicator"></div>
+        </div>
+        
+        <div id='instruction-container'class="instruction-container extra">
+            <p id="instruction-text">Click here to get instructions</p>
+            <button id="next-button" onclick = "setInstructionInfo()">Next</button>
+        </div>
+    </div>
+
+    <button id="hide-button" onclick="hideOrShow()">Hide extra widgets</button>
+
+
+
     <div class="container">
-        <svg class="progress-ring" width="250" height="250">
+        <svg class="progress-ring" width="250" height="250" id="progress-ring">
             <circle cx="125" cy="125" r="100" stroke="#444" stroke-width="15"></circle>
             <circle id="progress" cx="125" cy="125" r="100" stroke="#61dafb" stroke-width="15" stroke-dasharray="628" stroke-dashoffset="628"></circle>
         </svg>
@@ -29,12 +45,17 @@
     </div>
     <input type="text" class="text-box" id="textInput" placeholder="">
     <div class="button-container">
-        <div class="timer-buttons">
-            <button class="timer-button" onclick="setTimer(5000, this)">5s</button>
-            <button class="timer-button" onclick="setTimer(10000, this)" id="10">10s</button>
-            <button class="timer-button" onclick="setTimer(20000, this)">20s</button>
+        <div class="timer-buttons" id="timer-buttons">
+            <button class="timer-button main" onclick="setTimer(3000, this)">3s</button>
+            <button class="timer-button main" onclick="setTimer(5000, this)" id="5">5s</button>
+            <button class="timer-button main" onclick="setTimer(10000, this)">10s</button>
         </div>
-        <button class="start-button" onclick="startGame()">Start Timer</button>
+        <button id="start-button" class="start-button main" onclick="startGame()">Start Game</button>
+    </div>
+
+
+    <div id='simple-widget' class="simple-widget extra">
+        <p id="infoText">Hover over any button to see information about it.</p>
     </div>
 
     <script src="script.js"></script>

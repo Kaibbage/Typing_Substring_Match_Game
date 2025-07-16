@@ -87,8 +87,14 @@ public class EnglishWordDictionaryGrams {
     }
 
     public void initializeStuff(){
-        loadDictionary("textfiles/words_alpha.txt");
-        loadGrams("textfiles/grams.txt");
+        if(dictionary.isEmpty()){
+            loadDictionary("textfiles/words_alpha.txt");
+        }
+
+        if(grams.isEmpty()){
+            loadGrams("textfiles/grams.txt");
+        }
+
     }
 
     public void resetStuff(){
