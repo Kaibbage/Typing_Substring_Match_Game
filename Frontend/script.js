@@ -118,6 +118,7 @@ async function askBackendIfReady(){
         });
 
         const result = await response.text(); // Extract result
+        console.log(result);
         if(result.includes("ady")){
             return true;
         }
