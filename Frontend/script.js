@@ -53,7 +53,6 @@ let instructions = ["Click here to get instructions",
                     "If your word is valid the word will pop up somewhere on the screen and a new substring will appear in the circle. The timer will also restart after each valid word and you will gain points for each one you submit.",
                     "If your word is invalid then the text box will flash red, and you will have to try a different word for the same substring. ",
                     "Each word is worth 1, 2, or 3 points based on the time difficulty you selected. Once you are ready select a time difficult and hit start game",
-                    "Click random to generate a random solvable sudoku",
                     "Have fun :)"];
 let instructionNumber = 0;
 
