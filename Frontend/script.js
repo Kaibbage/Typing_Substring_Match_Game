@@ -483,8 +483,7 @@ async function initialize() {
                 textBox.value = "";
             } else {
                 // Show message if timer isn't running
-                alert("Please start the timer before submitting text!");
-                textBox.value = "";
+                //maybe can't do this tho because there is a little delay in between words
             }
         }
     });

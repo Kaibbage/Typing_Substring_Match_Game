@@ -23,47 +23,40 @@ public class EnglishWordDictionaryGrams {
         currentGram = "";
     }
 
-    // Load dictionary from the resources folder
+
     public void loadDictionary(String filename) {
         try {
-            // Get the file from the classpath (resources folder)
             Resource resource = new ClassPathResource(filename);
-            File file = resource.getFile();  // Get the file from the classpath
 
-            // Read the file content
-            try (Scanner scanner = new Scanner(file)) {
+            try (Scanner scanner = new Scanner(resource.getInputStream())) {
                 while (scanner.hasNext()) {
                     dictionary.add(scanner.next().toLowerCase());
                 }
                 System.out.println("Dictionary loaded successfully! Words: " + dictionary.size());
             }
-        } catch (FileNotFoundException e) {
-            System.err.println("Error: Dictionary file not found!");
+
         } catch (IOException e) {
-            System.err.println("Error reading the file: " + e.getMessage());
+            System.err.println("Error reading dictionary file: " + e.getMessage());
         }
     }
 
-    // Load grams from the grams.txt file into an ArrayList
+
     public void loadGrams(String filename) {
         try {
-            // Get the file from the classpath (resources folder)
             Resource resource = new ClassPathResource(filename);
-            File file = resource.getFile();  // Get the file from the classpath
 
-            // Read the file content
-            try (Scanner scanner = new Scanner(file)) {
+            try (Scanner scanner = new Scanner(resource.getInputStream())) {
                 while (scanner.hasNext()) {
                     grams.add(scanner.next().toLowerCase());
                 }
                 System.out.println("Grams loaded successfully! Total grams: " + grams.size());
             }
-        } catch (FileNotFoundException e) {
-            System.err.println("Error: Grams file not found!");
+
         } catch (IOException e) {
-            System.err.println("Error reading the grams file: " + e.getMessage());
+            System.err.println("Error reading grams file: " + e.getMessage());
         }
     }
+
 
     public void generateNewGram(){
         int randIndex = (int) (Math.random() * grams.size());
