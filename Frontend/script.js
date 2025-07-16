@@ -118,7 +118,7 @@ async function askBackendIfReady(){
         });
 
         const result = await response.text(); // Extract result
-        if(result.includes("r")){
+        if(result.includes("ady")){
             return true;
         }
         else{
