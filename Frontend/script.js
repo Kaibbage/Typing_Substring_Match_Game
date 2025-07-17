@@ -189,6 +189,7 @@ async function startGame(){
     let startGram = await resetGameBackend();
     let timerElement = document.getElementById("timer");
     timerElement.textContent = startGram;
+    document.getElementById("textInput").focus();
 
     startTimer();
 }
