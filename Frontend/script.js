@@ -96,6 +96,7 @@ async function markOpen(){
 
     
     getHighScoreFromBackend();
+    enableMainButtons();
 }
 
 let readyIntervalId;
@@ -247,16 +248,28 @@ function setTimer(newDuration, button) {
 function startTimer() {
     if (!duration || timerRunning) return;
     
-    // Disable timer buttons
-    let timerButtons = document.querySelectorAll('.main');
-    timerButtons.forEach(button => {
-        button.disabled = true;
-    });
+    disableMainButtons();
     
     startTime = Date.now();
     lastSecond = duration / 1000;
     timerRunning = true;
     requestAnimationFrame(updateTimer);
+}
+
+function disableMainButtons(){
+    // Disable main buttons
+    let timerButtons = document.querySelectorAll('.main');
+    timerButtons.forEach(button => {
+        button.disabled = true;
+    });
+}
+
+function enableMainButtons(){
+    // Enable main buttons
+    let timerButtons = document.querySelectorAll('.main');
+    timerButtons.forEach(button => {
+        button.disabled = false;
+    });
 }
 
 function resetTimer() {
@@ -320,12 +333,7 @@ function gameOver(){
 }
 
 function resetGame(){
-    // Re-enable timer buttons
-    let timerButtons = document.querySelectorAll('.main');
-    timerButtons.forEach(button => {
-        button.disabled = false;
-    });
-
+    enableMainButtons();
     let timerElement = document.getElementById("timer");
     timerElement.textContent = ":(";
 }
@@ -504,6 +512,8 @@ async function initialize() {
     setInstructionInfo();
     startReadyTimer();
     startCheckIfReady();
+
+    disableMainButtons();
 
 }
 
