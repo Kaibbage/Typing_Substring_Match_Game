@@ -72,7 +72,7 @@ function startReadyTimer(){
     updateReadyTimer();
     intervalId = setInterval(() => {
         timeToReady--;
-        updateReadyTimer();
+        updateReadyTimer(); 
     }, 1000);
 }
 
@@ -85,6 +85,7 @@ function updateReadyTimer(){
 function markOpen(){
     clearInterval(intervalId);
     clearInterval(readyIntervalId);
+
     document.getElementById("status-label").textContent = "Ready :)";
     let statusCircle = document.getElementById("status-circle");
     // statusCircle.style.height = "75px";
@@ -92,6 +93,7 @@ function markOpen(){
     statusCircle.style.bottom = "50%";
     statusCircle.style.backgroundColor = "lightgreen";
 
+    setupGameBackend();
     getHighScoreFromBackend();
 }
 
@@ -490,7 +492,6 @@ async function initialize() {
     lifeNum = 1;
     timerRunning = false;
 
-    await setupGameBackend();
 
     score = 0;
     highScore = 0;
@@ -502,6 +503,7 @@ async function initialize() {
     setInstructionInfo();
     startReadyTimer();
     startCheckIfReady();
+
 }
 
 window.onload = initialize;
