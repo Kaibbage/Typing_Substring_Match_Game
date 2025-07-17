@@ -82,7 +82,8 @@ function updateReadyTimer(){
     document.getElementById("status-label").innerHTML = `This will turn green when the webpage is ready to be used. <br> Time remaining: ${min} min, ${seconds} seconds`;
 }
 
-function markOpen(){
+async function markOpen(){
+    await setupGameBackend();
     clearInterval(intervalId);
     clearInterval(readyIntervalId);
 
@@ -93,7 +94,7 @@ function markOpen(){
     statusCircle.style.bottom = "50%";
     statusCircle.style.backgroundColor = "lightgreen";
 
-    setupGameBackend();
+    
     getHighScoreFromBackend();
 }
 
