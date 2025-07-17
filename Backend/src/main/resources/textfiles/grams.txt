@@ -102,7 +102,6 @@ lo
 us
 wa
 ni
-dt
 pe
 fo
 ew
@@ -120,10 +119,8 @@ for
 nde
 has
 nce
-edt
 tis
 oft
-sth
 men
 wer
 ver
