@@ -107,8 +107,9 @@ function startCheckIfReady(){
     }, 2000);
 }
 
-function checkIfReady(){
-    if(askBackendIfReady()){
+async function checkIfReady() {
+    const ready = await askBackendIfReady();
+    if(ready){
         markOpen();
     }
 }
@@ -122,7 +123,7 @@ async function askBackendIfReady(){
 
         const result = await response.text(); // Extract result
         console.log(result);
-        if(result.includes("ady")){
+        if(result.includes("finito")){
             return true;
         }
         else{

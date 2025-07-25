@@ -39,12 +39,12 @@ public class TypingGameController {
 
     @GetMapping("/")
     public String home() {
-        return "Sudoku Solver Backend is running!";
+        return "Typing Game Backend is running!";
     }
 
     @GetMapping("/is-ready")
     public String getReady() {
-        return "ready";
+        return "finito";
     }
 
     @GetMapping("/get-high-score")
