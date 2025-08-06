@@ -83,7 +83,7 @@ function updateReadyTimer(){
 }
 
 async function markOpen(){
-    await setupGameBackend();
+    //await setupGameBackend();
     clearInterval(intervalId);
     clearInterval(readyIntervalId);
 
@@ -123,7 +123,7 @@ async function askBackendIfReady(){
 
         const result = await response.text(); // Extract result
         console.log(result);
-        if(result.includes("finito")){
+        if(result.includes("yesReady")){
             return true;
         }
         else{

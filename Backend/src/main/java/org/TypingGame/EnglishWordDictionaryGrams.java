@@ -14,6 +14,7 @@ public class EnglishWordDictionaryGrams {
     private HashSet<String> used;
     private ArrayList<String> grams;
     private String currentGram;
+    private boolean ready = false;
 
 
     public EnglishWordDictionaryGrams(){
@@ -21,6 +22,8 @@ public class EnglishWordDictionaryGrams {
         used = new HashSet<>();
         grams = new ArrayList<>();
         currentGram = "";
+        initializeStuff();
+        ready = true;
     }
 
 
@@ -77,6 +80,10 @@ public class EnglishWordDictionaryGrams {
 
     public String getCurrentGram(){
         return currentGram;
+    }
+
+    public boolean isReady(){
+        return ready;
     }
 
     public void initializeStuff(){

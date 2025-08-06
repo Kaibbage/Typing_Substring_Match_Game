@@ -44,7 +44,12 @@ public class TypingGameController {
 
     @RequestMapping(path = "/is-ready", method = {RequestMethod.GET, RequestMethod.HEAD})
     public String getReady() {
-        return "finito";
+        if(ewdg.isReady()){
+            return "yesReady";
+        }
+        else{
+            return "noReady";
+        }
     }
 
     @GetMapping("/get-high-score")
@@ -103,12 +108,6 @@ public class TypingGameController {
         return "bad";
     }
 
-    @PostMapping("/setup-game")
-    public String setupGame() {
-        ewdg.initializeStuff();
-
-        return "yay";
-    }
 
     @PostMapping("/reset-game")
     public String resetGame() {
